@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>藤川 修平 | Shuhei Fujikawa Portfolio</title>
     <style>
+        /* 基本設定 */
         body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        
+        /* ヘッダー部分 */
         header { 
             display: flex; 
             align-items: center; 
@@ -21,31 +24,45 @@
             margin-right: 25px;
             border: 3px solid #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            background-color: #ddd; /* 画像がない時にグレーの円を表示 */
+            background-color: #ddd;
         }
         .header-text h1 { margin: 0; font-size: 2.2em; color: #0055aa; line-height: 1.1; }
         .ruby { font-size: 0.45em; color: #666; font-weight: normal; margin-left: 5px; }
         .eng-name { font-size: 1.8em; font-weight: bold; color: #444; display: block; margin: 2px 0 6px 0; line-height: 1; }
+        .sub-info { font-size: 1em; color: #555; margin: 0; padding: 0; }
+        .birth { font-size: 0.9em; color: #777; margin: 0; }
         
-        .sub-info { font-size: 1em; color: #555; margin: 0; padding: 0; line-height: 1.3; }
-        .birth { font-size: 0.9em; color: #777; margin: 0; padding: 0; line-height: 1.3; }
-        
+        /* 各セクションの設定 */
         section { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { border-left: 5px solid #0055aa; padding-left: 10px; margin-top: 0; color: #0055aa; font-size: 1.4em; }
+        h2 { border-left: 5px solid #0055aa; padding-left: 10px; margin-top: 0; color: #0055aa; font-size: 1.4em; display: flex; align-items: baseline; flex-wrap: wrap; }
         h2 span { font-size: 0.7em; font-weight: normal; color: #666; margin-left: 8px; }
         
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px; }
         li:last-child { border-bottom: none; }
         
-        .tag { background: #0055aa; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 8px; display: inline-block; vertical-align: middle; }
+        /* タグとタイトル */
+        .tag { background: #0055aa; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 8px; display: inline-block; margin-bottom: 5px; }
         .top-tag { background: #d32f2f; }
-        
-        .item-title { font-weight: bold; color: #333; font-size: 1.1em; }
+        .item-title { font-weight: bold; color: #333; font-size: 1.1em; display: inline-block; }
         .eng-desc { font-size: 0.85em; color: #777; display: block; margin-top: 4px; }
         
-        .contact-info a { color: #0055aa; text-decoration: none; }
-        footer { text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        /* 連絡先 */
+        .contact-info a { color: #0055aa; text-decoration: none; word-break: break-all; }
+        footer { text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; font-size: 0.8em; color: #999; }
+
+        /* ★スマホ対応（レスポンシブ）の設定★ */
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            header { flex-direction: column; text-align: center; }
+            .profile-img { margin-right: 0; margin-bottom: 15px; width: 120px; height: 120px; }
+            .header-text h1 { font-size: 1.8em; }
+            .eng-name { font-size: 1.4em; }
+            .sub-info { font-size: 0.9em; }
+            h2 { font-size: 1.2em; }
+            h2 span { margin-left: 0; display: block; width: 100%; margin-top: 2px; }
+            .item-title { font-size: 1em; display: block; margin-top: 5px; }
+        }
     </style>
 </head>
 <body>
@@ -130,7 +147,7 @@
 </section>
 
 <footer>
-    <p style="font-size: 0.8em; color: #999;">&copy; 2026 Shuhei Fujikawa</p>
+    <p>&copy; 2026 Shuhei Fujikawa</p>
 </footer>
 
 </body>

@@ -8,7 +8,6 @@
         /* 基本設定 */
         body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
         
-        /* ヘッダー部分 */
         header { 
             display: flex; 
             align-items: center; 
@@ -17,14 +16,10 @@
             margin-bottom: 30px; 
         }
         .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 25px;
-            border: 3px solid #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            background-color: #ddd;
+            width: 140px; height: 140px;
+            border-radius: 50%; object-fit: cover;
+            margin-right: 25px; border: 3px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); background-color: #ddd;
         }
         .header-text h1 { margin: 0; font-size: 2.2em; color: #0055aa; line-height: 1.1; }
         .ruby { font-size: 0.45em; color: #666; font-weight: normal; margin-left: 5px; }
@@ -32,7 +27,6 @@
         .sub-info { font-size: 1em; color: #555; margin: 0; padding: 0; }
         .birth { font-size: 0.9em; color: #777; margin: 0; }
         
-        /* 各セクションの設定 */
         section { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { border-left: 5px solid #0055aa; padding-left: 10px; margin-top: 0; color: #0055aa; font-size: 1.4em; display: flex; align-items: baseline; flex-wrap: wrap; }
         h2 span { font-size: 0.7em; font-weight: normal; color: #666; margin-left: 8px; }
@@ -41,27 +35,43 @@
         li { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px; }
         li:last-child { border-bottom: none; }
         
-        /* タグとタイトル */
         .tag { background: #0055aa; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 8px; display: inline-block; margin-bottom: 5px; }
         .top-tag { background: #d32f2f; }
         .item-title { font-weight: bold; color: #333; font-size: 1.1em; display: inline-block; }
         .eng-desc { font-size: 0.85em; color: #777; display: block; margin-top: 4px; }
+        .details-text { font-size: 0.85em; color: #555; margin-top: 5px; display: block; }
+
+        /* カテゴリ別折りたたみギャラリー */
+        .category-details {
+            border: 1px solid #eee; border-radius: 8px;
+            padding: 10px; margin-bottom: 15px; background: #fafafa;
+        }
+        .category-summary {
+            cursor: pointer; font-weight: bold; color: #0055aa;
+            padding: 5px; outline: none; font-size: 1.1em;
+        }
+        .category-summary:hover { text-decoration: underline; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; margin-top: 15px;
+        }
+        .gallery-item {
+            border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+            background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .gallery-item img, .gallery-item video {
+            width: 100%; height: 220px; object-fit: cover; display: block;
+        }
+        .gallery-caption { padding: 10px; font-size: 0.85em; color: #555; text-align: center; }
         
-        /* 連絡先 */
         .contact-info a { color: #0055aa; text-decoration: none; word-break: break-all; }
         footer { text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; font-size: 0.8em; color: #999; }
 
-        /* ★スマホ対応（レスポンシブ）の設定★ */
         @media (max-width: 600px) {
-            body { padding: 15px; }
             header { flex-direction: column; text-align: center; }
-            .profile-img { margin-right: 0; margin-bottom: 15px; width: 120px; height: 120px; }
-            .header-text h1 { font-size: 1.8em; }
-            .eng-name { font-size: 1.4em; }
-            .sub-info { font-size: 0.9em; }
-            h2 { font-size: 1.2em; }
-            h2 span { margin-left: 0; display: block; width: 100%; margin-top: 2px; }
-            .item-title { font-size: 1em; display: block; margin-top: 5px; }
+            .profile-img { margin-right: 0; margin-bottom: 15px; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -74,33 +84,85 @@
         <span class="eng-name">Shuhei Fujikawa</span>
         <p class="sub-info">沖縄工業高等専門学校 情報通信システム工学科 本科4年</p>
         <p class="sub-info" style="font-size: 0.85em; color: #777;">National Institute of Technology, Okinawa College</p>
-        <p class="birth">生年月日: 2006年07月26日 <span style="font-size: 0.9em; color: #999;">(DOB: July 26, 2006)</span></p>
+        <p class="birth">生年月日: 2006年07月26日</p>
     </div>
 </header>
+
+<section>
+    <h2>活動ギャラリー <span>Activity Gallery</span></h2>
+
+    <details class="category-details" open>
+        <summary class="category-summary">WiCON2025 優勝（総務大臣賞 受賞）</summary>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <video src="wicon2025_award.mp4" controls muted playsinline></video>
+                <div class="gallery-caption"><strong>表彰式 (動画)</strong><br>冒頭、林総務大臣と握手を交わす本人</div>
+            </div>
+            <div class="gallery-item">
+                <video src="wicon2025_award2.mp4" controls muted playsinline></video>
+                <div class="gallery-caption"><strong>表彰式 (動画)</strong><br>林総務大臣と共に賞状を掲げる本人</div>
+            </div>
+            <div class="gallery-item">
+                <img src="wicon2025_demo_minister.jpg" alt="デモ説明">
+                <div class="gallery-caption">林総務大臣へのデモ機直接説明</div>
+            </div>
+            <div class="gallery-item">
+                <img src="wicon2025_handshake.jpg" alt="握手">
+                <div class="gallery-caption">林総務大臣との握手（表彰式にて）</div>
+            </div>
+        </div>
+    </details>
+
+    <details class="category-details">
+        <summary class="category-summary">第3回 高専起業家サミット（優勝）</summary>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <video src="entrepreneur_summit_award.mp4" controls muted playsinline></video>
+                <div class="gallery-caption"><strong>表彰式 (動画)</strong><br>谷口功理事長より賞状を受け取る本人</div>
+            </div>
+            <div class="gallery-item">
+                <img src="entrepreneur_summit_award.jpg" alt="賞状">
+                <div class="gallery-caption"><strong>優勝（100万円パネル）</strong><br>中央で先生と賞状を持っているのが本人</div>
+            </div>
+            <div class="gallery-item">
+                <img src="entrepreneur_summit_award2.jpg" alt="全体集合写真">
+                <div class="gallery-caption"><strong>全体集合写真</strong><br>中央で谷口功理事長と賞状を持っているのが本人</div>
+            </div>
+        </div>
+    </details>
+</section>
 
 <section>
     <h2>受賞歴・プロジェクト <span>Awards & Projects</span></h2>
     <ul>
         <li>
+            <span class="tag top-tag">最優秀賞（総務大臣賞）</span>
+            <span class="tag">代表ピッチ登壇（単独）</span>
+            <span class="item-title">WiCON2025 優勝</span>
+            <span class="details-text">併せて、NEC賞、ソフトバンク賞、電子情報通信学会若手奨励賞を受賞</span>
+        </li>
+        <li>
             <span class="tag top-tag">最優秀賞</span>
             <span class="tag">代表ピッチ登壇（単独）</span>
             <span class="item-title">第3回 高専起業家サミット 優勝</span>
-            <span class="eng-desc">Grand Prize Winner at the 3rd KOSEN Entrepreneur Summit (Representative Presenter)</span>
         </li>
         <li>
-            <span class="tag top-tag">最優秀賞</span>
+            <span class="tag top-tag">最優秀賞（文部科学大臣賞）</span>
             <span class="tag">チームリーダー</span>
-            <span class="item-title">第4回 高専防災減災コンテスト 文部科学大臣賞 受賞</span>
-            <span class="eng-desc">Winner of the Minister of Education Award at the 4th KOSEN Disaster Prevention and Mitigation Contest (Team Leader)</span>
+            <span class="item-title">第4回 高専防災減災コンテスト 優勝</span>
         </li>
         <li>
             <span class="tag top-tag">グランプリ</span>
-            <span class="item-title">テクノ愛2025 大学の部 グランプリ 受賞</span>
-            <span class="eng-desc">Grand Prize Winner at Techno-Ai 2025</span>
+            <span class="item-title">テクノ愛2025 大学の部 優勝</span>
         </li>
         <li>
-            <span class="tag">受賞</span> <span class="item-title">WiCON2024 WiCONイノベーション賞</span>
-            <span class="eng-desc">WiCON 2024 Innovation Award</span>
+            <span class="tag">選出</span> 
+            <span class="item-title">DCON2025 二次審査通過（ポスター展示）</span>
+            <span class="details-text">最終審査直前まで進出し、本選会場にてプロジェクトの展示と説明を実施</span>
+        </li>
+        <li>
+            <span class="tag">受賞</span> 
+            <span class="item-title">WiCON2024 WiCONイノベーション賞</span>
         </li>
     </ul>
 </section>
@@ -112,11 +174,6 @@
             <span class="tag top-tag">ファイナリスト</span>
             <span class="tag">進行中</span>
             <span class="item-title">DCON2026（第7回 全国高専ディープラーニングコンテスト）</span>
-            <span class="eng-desc">DCON 2026 Finalist - Preparation for the Final Round</span>
-        </li>
-        <li>
-            <span class="tag">進行中</span> <span class="item-title">WiCON2025</span>
-            <span class="eng-desc">Wireless Creative Contest 2025</span>
         </li>
     </ul>
 </section>
@@ -125,12 +182,17 @@
     <h2>活動・役職 <span>Activities & Roles</span></h2>
     <ul>
         <li>
-            <span class="tag">R7年度</span> <span class="item-title">図書委員長</span>
-            <span class="eng-desc">Library Committee Chairperson (2025)</span>
+            <span class="tag">R7年度 委員長</span>
+            <span class="tag">4年間継続</span>
+            <span class="item-title">図書委員会</span>
+            <span class="details-text">1年次より継続して活動し、令和7年度には委員長として組織運営を統括。</span>
+        </li>
+        <li>
+            <span class="tag">寮生活</span> <span class="item-title">保安委員会</span>
+            <span class="details-text">令和6年度：副保安委員長 / 令和7・8年度：保安委員</span>
         </li>
         <li>
             <span class="tag">ボランティア</span> <span class="item-title">児童養護施設なごみ 学習支援活動</span>
-            <span class="eng-desc">Volunteer Learning Support at Children's Home "Nagomi"</span>
         </li>
     </ul>
 </section>
@@ -140,9 +202,7 @@
     <ul>
         <li><strong>電話 (Mobile):</strong> <a href="tel:09028557269">090-2855-7269</a></li>
         <li><strong>メール (E-mail):</strong> <a href="mailto:ic221232@edu.okinawa-ct.ac.jp">ic221232@edu.okinawa-ct.ac.jp</a></li>
-        <li><strong>学校住所 (School Address):</strong><br>
-        〒905-2192 沖縄県名護市字辺野古905番地<br>
-        <span style="font-size: 0.9em; color: #777;">905 Henoko, Nago City, Okinawa 905-2192, JAPAN</span></li>
+        <li><strong>住所:</strong> 〒905-2192 沖縄県名護市字辺野古905番地</li>
     </ul>
 </section>
 
